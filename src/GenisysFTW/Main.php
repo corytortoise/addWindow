@@ -18,6 +18,7 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\plugin\PluginBase;
 use pocketmine\tile\Chest;
 use pocketmine\tile\Tile;
+use GenisysFTW\DelayTask;
 
 class Main extends PluginBase implements Listener{
 
@@ -49,8 +50,8 @@ class Main extends PluginBase implements Listener{
     if($sender instanceof Player){
       switch(strtolower($cmd->getName())){
 	case "addwindow":
-          $sender->sendMessage("Added chest window!");
-          $this->sendChestInventory($sender);
+          $sender->sendMessage("Opening Chest window in 5 seconds...");
+          $this->getServer->getScheduler()->scheduleDelayedTask(new DelayTask($this, $sender), 100);
         break;
       }
     }
